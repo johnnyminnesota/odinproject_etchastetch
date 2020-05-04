@@ -2,6 +2,8 @@ const curry = (fn) => (...a) => (...b) => fn(...a, ...b);
 const compose = (f, g) => (a) => (f(g(a)));
 const $ = (id) => document.getElementById(id);
 
+const mouseEvent = (e) => e.target.classList.add('hit');
+
 const newDiv = () => {
     const div = document.createElement('div');
     return div;
@@ -12,8 +14,6 @@ const addClass = (elem) => {
     return elem;
 };
 
-const mouseEvent = (e) => e.target.classList.add('hit');
-
 const addEvent = curry((listener, elem) => {
     elem.addEventListener('mouseover', listener);
     console.log('tet');
@@ -22,15 +22,16 @@ const addEvent = curry((listener, elem) => {
 
 const newBox = compose(addEvent(mouseEvent), compose(addClass, newDiv));
 
-const appendy = (container, fn, num) => {
+const appendChildren = (container, factory, num) => {
     if (num > 0) {
-        container.appendChild(fn());
-        appendy(container, fn, num - 1);
+        container.appendChild(factory());
+        appendChildren(container, factory, num - 1);
     }
     return container;
 };
 
-const makeBoard = (num) => appendy($('container'), () => appendy(newDiv(), newBox, num), num);
+const makeRow = (length) => appendChildren(newDiv(), newBox, length);
+const makeBoard = (size) => appendChildren($('container'), () => makeRow(size), size);
 
 const init = function() {
     makeBoard(8);
