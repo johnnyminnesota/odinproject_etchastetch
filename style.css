@@ -1,0 +1,31 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Container {
+    width: 960px;
+    height: 960px;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+}
+.Container>div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+}
+.Container>div>div {
+    flex-grow: 1;
+    margin: 1px;
+}
+.Box {
+    background-color: blue;
+    display: inline-block;
+}
+
+.hit {
+    background-color: white;
+}
