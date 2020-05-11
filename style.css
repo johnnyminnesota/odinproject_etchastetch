@@ -1,3 +1,8 @@
+:root {
+    --etch-color: #DD3D3D;
+    --eth-highlight: #ffb9b9b0;
+    --etch-shadow: #772424bd;
+}
 body {
     height: 100vh;
     display: flex;
@@ -5,27 +10,62 @@ body {
     align-items: center;
     justify-content: center;
 }
-.Container {
-    width: 960px;
-    height: 960px;
-    /* background-color: red; */
+.Etch {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    height: 900px;
+    border-radius: 8px;
+    background-color: var(--etch-color);
+    box-shadow: 
+        inset -4px -8px 12px 0px var(--etch-shadow), 
+        inset 4px 4px 8px 0px var(--eth-highlight), 
+        1px 1px 2px #757575;
+}
+.Etch>h1 {
+    position: absolute;
+    align-self: flex-start;
+    color: #fffb00;
+    margin: 28px;
+}
+.Screen { 
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    width: 80%;
+    height: 80%;
+    border-radius: 16px;
+    background-color: #ECECEC;
+    box-shadow: 
+        -3px -3px 8px 0px var(--etch-shadow), 
+        3px 3px 3px 0px var(--eth-highlight);
 }
-.Container>div {
+.Screen>div {
     flex-grow: 1;
     display: flex;
     flex-direction: row;
 }
-.Container>div>div {
+.Screen>div>div {
     flex-grow: 1;
-    margin: 1px;
 }
-.Box {
-    background-color: blue;
-    display: inline-block;
+.Knobs {
+    position: absolute;
+    align-self: flex-end;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-
+.Knobs>div {
+    background-color: #FEFEFE;
+    height: 80px;
+    width: 80px;
+    border-radius: 70px;
+    margin: 16px;
+    box-shadow: 2px 1px 5px var(--etch-shadow);
+}
 .hit {
-    background-color: white;
+    background-color: #404040;
 }

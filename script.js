@@ -2,8 +2,6 @@ const curry = (fn) => (...a) => (...b) => fn(...a, ...b);
 const compose = (f, g) => (a) => (f(g(a)));
 const $ = (id) => document.getElementById(id);
 
-const mouseEvent = (e) => e.target.classList.add('hit');
-
 const newDiv = () => {
     const div = document.createElement('div');
     return div;
@@ -20,7 +18,9 @@ const addEvent = curry((listener, elem) => {
     return elem;
 });
 
-const newBox = compose(addEvent(mouseEvent), compose(addClass, newDiv));
+const colorChange = (e) => e.target.classList.add('hit');
+
+const newBox = compose(addEvent(colorChange), compose(addClass, newDiv));
 
 const appendChildren = (container, factory, num) => {
     if (num > 0) {
@@ -34,7 +34,7 @@ const makeRow = (length) => appendChildren(newDiv(), newBox, length);
 const makeBoard = (size) => appendChildren($('container'), () => makeRow(size), size);
 
 const init = function() {
-    makeBoard(8);
+    makeBoard(64);
 }
 
 window.onload = init;
